@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-from iv import net
+from iv import LICENSE_PLATE_NN as NN
 from iv.model.vehicle import VehicleModel
 
 
@@ -10,6 +10,6 @@ def get_lincese_plate(vehicle_img):
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
     model = VehicleModel(img)
-    # model.save_img()
+    model.predict()
 
     return model

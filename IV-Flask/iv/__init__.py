@@ -1,9 +1,8 @@
-import darknet.darknet as dn
 import os
 
+from iv.neural_network.license_plate import LicensePlateNetwork
 
-net = dn.load_net("/home/pedalv/Workspace/darknet/cfg/yolov3-iv-test.cfg".encode('utf-8'),
-                  "/home/pedalv/Workspace/darknet/yolov3-iv_7100.weights".encode('utf-8'), 0)
+LICENSE_PLATE_NN = LicensePlateNetwork()
 
 
 def config(variable, namespace="IV_"):
@@ -29,3 +28,7 @@ def config(variable, namespace="IV_"):
         pass
 
     return value
+
+
+if __name__ == '__main__':
+    print(LICENSE_PLATE_NN.detect('/home/pedalv/Workspace/IdentificacaoVeicular/IV-Flask/.saved/temp.jpg'))

@@ -45,8 +45,6 @@ def create_app(gunicorn=False, **kwargs):
         print('ERROR!')
         sys.exit(1)
 
-    # digibot.logger.info("Creating digibot_api with {} config".format(flask_config_name))
-
     # API instantiation
     api = Api(app, title=app.config['API_TITLE'], api_spec_url=app.config['API_SPEC_URL'])
 
@@ -57,7 +55,6 @@ def create_app(gunicorn=False, **kwargs):
 
     @app.errorhandler(Exception)
     def handle_error(error):
-        # digibot.logger.exception(str(error))
         response = json.jsonify(dict(error=str(error)))
         response.status_code = 500
         if hasattr(error, "code"):
