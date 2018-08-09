@@ -22,7 +22,7 @@ import multiprocessing
 #       range.
 #
 
-bind = '0.0.0.0:8044'
+bind = '0.0.0.0:8045'
 backlog = os.environ['GUNICORN_BACKLOG'] if 'GUNICORN_BACKLOG' in os.environ else 2048
 
 #
@@ -78,7 +78,7 @@ backlog = os.environ['GUNICORN_BACKLOG'] if 'GUNICORN_BACKLOG' in os.environ els
 #       If this is set to zero (the default) then the automatic worker restarts are disabled.
 
 workers = os.environ[
-    'GUNICORN_N_WORKERS'] if 'GUNICORN_N_WORKERS' in os.environ else multiprocessing.cpu_count() * 2 + 1
+    'GUNICORN_N_WORKERS'] if 'GUNICORN_N_WORKERS' in os.environ else multiprocessing.cpu_count() * 0 + 1
 worker_class = os.environ['GUNICORN_WORKER_CLASS'] if 'GUNICORN_WORKER_CLASS' in os.environ else 'sync'
 threads = os.environ['GUNICORN_THREADS'] if 'GUNICORN_THREADS' in os.environ else 1
 worker_connections = os.environ['GUNICORN_WORKER_CONNECTIONS'] if 'GUNICORN_WORKER_CONNECTIONS' in os.environ else 1000

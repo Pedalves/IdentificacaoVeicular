@@ -6,7 +6,7 @@ import os
 
 from iv.neural_network.license_plate import LicensePlateNetwork
 
-dn.set_gpu(1)
+#dn.set_gpu(1)
 LICENSE_PLATE_NN = LicensePlateNetwork()
 
 

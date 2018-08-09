@@ -39,5 +39,5 @@ def run(context):
     # Hack to load environment variables when running Gunicorn locally
     if os.getenv('FLASK_CONFIG') is None:
         IV.load_environment_variables()
-    app = IV()
-    app.run()
+    app = iv.api.create_app()
+    app.run(port=8045, debug=False)
