@@ -7,7 +7,7 @@ import darknet.darknet as dn
 class LicenseBoxNetwork:
     def __init__(self):
         curr_path = os.getcwd()
-        dn.set_gpu(0)
+
         self._net = dn.load_net(os.path.join(curr_path, 'iv', 'neural_network', 'net',
                                              'yolov3-iv-test.cfg').encode('utf-8'),
                                 os.path.join(curr_path, 'iv', 'neural_network', 'net',
@@ -76,7 +76,7 @@ class LicenseBoxNetwork:
 class LicensePlateNetwork:
     def __init__(self):
         curr_path = os.getcwd()
-        dn.set_gpu(0)
+
         self._net = dn.load_net(os.path.join(curr_path, 'iv', 'neural_network', 'net',
                                              'yolov3-tiny-test.cfg').encode('utf-8'),
                                 os.path.join(curr_path, 'iv', 'neural_network', 'net',
