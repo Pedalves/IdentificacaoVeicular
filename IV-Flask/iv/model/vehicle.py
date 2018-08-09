@@ -3,6 +3,7 @@ import os
 from iv import LICENSE_PLATE_NN
 from . import Model
 import cv2
+import time
 
 
 class VehicleModel(Model):
@@ -29,4 +30,6 @@ class VehicleModel(Model):
         cv2.destroyAllWindows()
 
     def predict(self):
+        start = time.time()
         self.license_plate = LICENSE_PLATE_NN.detect(self.save_img())
+        self.time = time.time() - start
