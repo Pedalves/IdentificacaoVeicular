@@ -31,4 +31,4 @@ def config(variable, namespace="IV_"):
 
 
 if __name__ == '__main__':
-    print(LICENSE_PLATE_NN.detect('/home/pedalv/Workspace/IdentificacaoVeicular/IV-Flask/.saved/temp.jpg'))
+    print(LICENSE_PLATE_NN.detect('/home/pedro/Workspace/IdentificacaoVeicular/IV-Flask/.saved/temp.jpg'))
