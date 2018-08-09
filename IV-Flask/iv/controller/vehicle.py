@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 
-from iv import LICENSE_PLATE_NN as NN
 from iv.model.vehicle import VehicleModel
 
 

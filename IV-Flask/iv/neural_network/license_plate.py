@@ -23,12 +23,9 @@ class LicenseBoxNetwork:
         prediction = self._select_plate(self._convert_to_conners(self.detect(img)), 0.7)
 
         if prediction is None:
-            print('ERROR')
             return None
 
-        if self._validate_plate_shape(prediction):
-            return self._crop_image(img, prediction)
-        return None
+        return self._crop_image(img, prediction)
 
     def _convert_to_conners(self, prediction):
         for index, pred in enumerate(prediction):
@@ -54,18 +51,6 @@ class LicenseBoxNetwork:
 
         return None
 
-    def _validate_plate_shape(self, box):
-
-        w = (box[2] - box[0])
-        h = (box[3] - box[1])
-
-        prop = w / h
-
-        if prop >= 2.5 and prop <= 3.4:
-            return True
-        else:
-            return False
-
     def _crop_image(self, file_path, box):
         output_folder = os.path.join(os.getcwd(), '.saved')
 
@@ -81,6 +66,8 @@ class LicenseBoxNetwork:
 
         if os.path.isfile(file_path):
             os.remove(file_path)
+
+        # cv2.resize(crop_img, (crop_img.shape[0]*2, crop_img.shape[1]*2), interpolation=cv2.INTER_CUBIC)
 
         cv2.imwrite(file_path, crop_img)
         return file_path
@@ -105,12 +92,8 @@ class LicensePlateNetwork:
         if not img:
             return ''
 
-        reverse = False
-        if img.find("_aug") != -1:
-            reverse = True
-
         r = dn.detect(self._net, self._meta, img.encode('utf-8'))
-        _, pred_plate = self._convert_to_conners(r, reverse)
+        _, pred_plate = self._convert_to_conners(r)
 
         return pred_plate
 
@@ -138,7 +121,7 @@ class LicensePlateNetwork:
         else:
             return char
 
-    def _convert_to_conners(self, prediction, reverse):
+    def _convert_to_conners(self, prediction, reverse=False):
 
         if len(prediction) > 7:
             prediction = sorted(prediction, key=lambda pre: pre[1], reverse=True)[:7]
