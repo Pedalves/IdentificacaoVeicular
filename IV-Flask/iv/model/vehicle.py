@@ -31,5 +31,7 @@ class VehicleModel(Model):
 
     def predict(self):
         start = time.time()
-        self.license_plate = LICENSE_PLATE_NN.detect(self.save_img())
+        file_path = self.save_img()
+        self.license_plate = LICENSE_PLATE_NN.detect(file_path)
+        os.remove(file_path)
         self.time = time.time() - start

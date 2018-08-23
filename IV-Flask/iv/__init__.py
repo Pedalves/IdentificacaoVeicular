@@ -1,12 +1,8 @@
 import sys
-sys.path.append("/home/pedro/Workspace/IdentificacaoVeicular/IV-Flask")
-
-import darknet.darknet as dn
 import os
 
 from iv.neural_network.license_plate import LicensePlateNetwork
 
-#dn.set_gpu(1)
 LICENSE_PLATE_NN = LicensePlateNetwork()
 
 
@@ -37,6 +33,9 @@ def config(variable, namespace="IV_"):
 
 if __name__ == '__main__':
     import time
+
+    sys.path.append("/home/pedro/Workspace/IdentificacaoVeicular/IV-Flask")
+
     s = time.time()
     print(LICENSE_PLATE_NN.detect('/home/pedro/Workspace/IdentificacaoVeicular/IV-Flask/.saved/temp.jpg'))
     print(time.time() - s)

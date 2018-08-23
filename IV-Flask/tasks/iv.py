@@ -31,7 +31,7 @@ class IV(Application):
 
 
 @task(default=True)
-def run(context):
+def run(context, port=8046):
     """
     Start the Server with Gunicorn
     """
@@ -40,4 +40,4 @@ def run(context):
     if os.getenv('FLASK_CONFIG') is None:
         IV.load_environment_variables()
     app = iv.api.create_app()
-    app.run(port=8046, debug=False)
+    app.run(port=port, debug=False)
