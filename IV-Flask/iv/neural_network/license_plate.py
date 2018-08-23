@@ -1,5 +1,6 @@
 import os
 import cv2
+import uuid
 
 import darknet.darknet as dn
 
@@ -62,7 +63,7 @@ class LicenseBoxNetwork:
         img = cv2.imread(file_path)
         crop_img = img[y:h, x:w]
 
-        file_path = os.path.join(output_folder, 'placa.jpg')
+        file_path = os.path.join(output_folder, str(uuid.uuid4()) + '.jpg')
 
         if os.path.isfile(file_path):
             os.remove(file_path)
@@ -94,6 +95,8 @@ class LicensePlateNetwork:
 
         r = dn.detect(self._net, self._meta, img.encode('utf-8'))
         _, pred_plate = self._convert_to_conners(r)
+
+        os.remove(img)
 
         return pred_plate
 
