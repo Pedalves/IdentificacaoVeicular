@@ -80,7 +80,7 @@ backlog = os.environ['GUNICORN_BACKLOG'] if 'GUNICORN_BACKLOG' in os.environ els
 workers = os.environ[
     'GUNICORN_N_WORKERS'] if 'GUNICORN_N_WORKERS' in os.environ else multiprocessing.cpu_count() * 0 + 1
 worker_class = os.environ['GUNICORN_WORKER_CLASS'] if 'GUNICORN_WORKER_CLASS' in os.environ else 'sync'
-threads = os.environ['GUNICORN_THREADS'] if 'GUNICORN_THREADS' in os.environ else 1
+#threads = os.environ['GUNICORN_THREADS'] if 'GUNICORN_THREADS' in os.environ else 1
 worker_connections = os.environ['GUNICORN_WORKER_CONNECTIONS'] if 'GUNICORN_WORKER_CONNECTIONS' in os.environ else 1000
 timeout = os.environ['GUNICORN_WORKER_TIMEOUT'] if 'GUNICORN_WORKER_TIMEOUT' in os.environ else 90
 max_requests = os.environ['GUNICORN_MAX_REQUESTS'] if 'GUNICORN_MAX_REQUESTS' in os.environ else 0
@@ -118,7 +118,7 @@ access_log_format = '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
 #       A string or None to choose a default of something like 'gunicorn'.
 #
 
-proc_name = 'digibot'
+proc_name = 'iv'
 
 
 # Server hooks
