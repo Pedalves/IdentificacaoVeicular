@@ -10,9 +10,9 @@ class LicenseBoxNetwork:
         curr_path = os.getcwd()
 
         self._net = dn.load_net(os.path.join(curr_path, 'iv', 'neural_network', 'net',
-                                             'yolov3-iv-test.cfg').encode('utf-8'),
+                                             'bb-nn.cfg').encode('utf-8'),
                                 os.path.join(curr_path, 'iv', 'neural_network', 'net',
-                                             'yolov3-iv_23600.weights').encode('utf-8'), 0)
+                                             'bb-nn_92000.weights').encode('utf-8'), 0)
         self._meta = dn.load_meta(os.path.join(curr_path, 'iv', 'neural_network',
                                                'meta', 'bb', 'obj.data').encode('utf-8'))
 
