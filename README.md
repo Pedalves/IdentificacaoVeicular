@@ -5,6 +5,7 @@ API Restful desenvolvida em Flask para reconhecimento de placas.
 ## Estrutura do repositorio
 
 `datase_utils/`: Diretorio contendo notebooks para auxilio no desenvolvimento do dataset
+
 `IV-Flask/`: Principal diretorio do repositorio, onde se encontra o projeto da API
 
 `api_post.ipynb`: Notebook com exemplo de acesso a API
