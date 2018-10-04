@@ -13,6 +13,7 @@ class LicenseBoxNetwork:
                                              'bb-nn.cfg').encode('utf-8'),
                                 os.path.join(curr_path, 'iv', 'neural_network', 'net',
                                              'bb-nn_92000.weights').encode('utf-8'), 0)
+
         self._meta = dn.load_meta(os.path.join(curr_path, 'iv', 'neural_network',
                                                'meta', 'bb', 'obj.data').encode('utf-8'))
 
