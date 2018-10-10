@@ -95,11 +95,10 @@ class LicensePlateNetwork:
             return ''
 
         r = dn.detect(self._net, self._meta, img.encode('utf-8'))
-        _, pred_plate = self._convert_to_conners(r)
-
+        _, pred_plate, score_plate = self._convert_to_conners(r)
         os.remove(img)
 
-        return pred_plate
+        return pred_plate, score_plate
 
     def _char_to_int(self, char):
         if char == 'I':
@@ -136,6 +135,7 @@ class LicensePlateNetwork:
             prediction = self._bigger_distance(prediction)
 
         str_plate = ''
+        score_plate = []
 
         for index, pred in enumerate(prediction):
 
@@ -153,10 +153,20 @@ class LicensePlateNetwork:
 
             if index > 2:
                 str_plate += self._char_to_int(pred[0].decode("utf-8"))
+                score = {
+                    'char': self._char_to_int(pred[0].decode("utf-8")),
+                    'score': pred[1]
+                }
             else:
                 str_plate += pred[0].decode("utf-8")
+                score = {
+                    'char': pred[0].decode("utf-8"),
+                    'score': pred[1]
+                }
 
-        return prediction, str_plate
+            score_plate.append(score)
+
+        return prediction, str_plate, score_plate
 
     def _bigger_distance(self, prediction):
 
@@ -177,6 +187,6 @@ class LicensePlateNetwork:
                 bigger = dist
                 pos_bigger = index + 1
 
-        prediction.insert(pos_bigger, ('?', 0, (-1, -1, -1, -1)))
+        prediction.insert(pos_bigger, ('I', 0.5, (-1, -1, -1, -1)))
 
         return prediction
