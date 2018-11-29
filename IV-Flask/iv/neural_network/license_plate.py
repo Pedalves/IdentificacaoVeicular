@@ -120,6 +120,7 @@ class LicensePlateNetwork:
             os.remove(img)
 
             if output_path:
+                copyfile(car_img, output_path + '.original')
                 self.write_output(output_path, cv2.imread(car_img), bb_pred, pred_plate)
 
             return pred_plate, score_plate
