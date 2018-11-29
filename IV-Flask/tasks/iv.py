@@ -1,6 +1,7 @@
 from invoke import task
 import os
 import json
+import subprocess
 
 from gunicorn.app.base import Application
 
@@ -41,3 +42,10 @@ def run(context, port=8046):
         IV.load_environment_variables()
     app = iv.api.create_app()
     app.run(port=port, debug=False)
+
+
+@task
+def test(context):
+    params = ['pytest', '-x', '-s']
+
+    subprocess.run(params, check=True)
