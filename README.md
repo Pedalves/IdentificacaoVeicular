@@ -29,6 +29,12 @@ cd IV-Flask
 invoke iv
 ```
 
+## CURL Request
+
+```
+curl -i -X POST -H "Content-Type: image/jpeg" --data-binary @"img.jpg" http://localhost:8046/vehicle
+```
+
 ### Bugs conhecidos
 
 A API conta com o uso do Swagger, entretanto o post de imagens via swagger possui um bug que impossibilita seu uso 
