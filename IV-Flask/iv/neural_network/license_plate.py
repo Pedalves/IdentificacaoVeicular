@@ -12,7 +12,7 @@ class LicenseBoxNetwork:
         self._net = dn.load_net(os.path.join(curr_path, 'iv', 'neural_network', 'net',
                                              'bb-nn.cfg').encode('utf-8'),
                                 os.path.join(curr_path, 'iv', 'neural_network', 'net',
-                                             'bb-nn_92000.weights').encode('utf-8'), 0)
+                                             'bb-nn.weights').encode('utf-8'), 0)
 
         self._meta = dn.load_meta(os.path.join(curr_path, 'iv', 'neural_network',
                                                'meta', 'bb', 'obj.data').encode('utf-8'))
@@ -82,7 +82,7 @@ class LicensePlateNetwork:
         self._net = dn.load_net(os.path.join(curr_path, 'iv', 'neural_network', 'net',
                                              'yolov3-tiny-test.cfg').encode('utf-8'),
                                 os.path.join(curr_path, 'iv', 'neural_network', 'net',
-                                             'yolov3-tiny_43000.weights').encode('utf-8'), 0)
+                                             'yolov3-tiny.weights').encode('utf-8'), 0)
         self._meta = dn.load_meta(os.path.join(curr_path, 'iv', 'neural_network', 'meta',
                                                'plate', 'obj.data').encode('utf-8'))
 
