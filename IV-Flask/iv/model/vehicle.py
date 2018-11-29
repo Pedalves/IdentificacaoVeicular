@@ -13,7 +13,7 @@ class VehicleModel(Model):
 
         self._vehicle_img = vehicle_img
         self.license_plate = ''
-        self.score = {}
+        self.score = []
         self.output_path = output_path
 
     def save_img(self, name='temp'):

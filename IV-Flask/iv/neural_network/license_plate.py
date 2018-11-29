@@ -127,7 +127,7 @@ class LicensePlateNetwork:
             if output_path:
                 copyfile(car_img, output_path)
 
-        return '', {}
+        return '', []
 
     def _char_to_int(self, char):
         if char == 'I':
