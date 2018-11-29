@@ -29,13 +29,3 @@ def config(variable, namespace="IV_"):
         pass
 
     return value
-
-
-if __name__ == '__main__':
-    import time
-
-    sys.path.append("/home/pedro/Workspace/IdentificacaoVeicular/IV-Flask")
-
-    s = time.time()
-    print(LICENSE_PLATE_NN.detect('/home/pedro/Workspace/IdentificacaoVeicular/IV-Flask/.saved/temp.jpg'))
-    print(time.time() - s)
