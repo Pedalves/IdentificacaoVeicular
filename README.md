@@ -29,10 +29,18 @@ cd IV-Flask
 invoke iv
 ```
 
+## Executar testes
+
+```
+cd IV-Flask
+
+invoke iv.test
+```
+
 ## CURL Request
 
 ```
-curl -i -X POST -H "Content-Type: image/jpeg" --data-binary @"img.jpg" http://localhost:8046/vehicle
+curl -i -X POST -H "Content-Type: image/jpeg" --data-binary @"img.jpg" http://localhost:8046/vehicle?debug=True
 ```
 
 ### Bugs conhecidos

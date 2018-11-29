@@ -1,6 +1,7 @@
 import os
 import cv2
 import uuid
+from shutil import copyfile
 
 import darknet.darknet as dn
 
@@ -27,7 +28,7 @@ class LicenseBoxNetwork:
         if prediction is None:
             return None
 
-        return self._crop_image(img, prediction)
+        return self._crop_image(img, prediction), prediction
 
     def _convert_to_conners(self, prediction):
         for index, pred in enumerate(prediction):
@@ -88,17 +89,45 @@ class LicensePlateNetwork:
 
         self.bb_network = LicenseBoxNetwork()
 
-    def detect(self, car_img):
-        img = self.bb_network.get_plate_img(car_img)
+    @staticmethod
+    def write_output(file_path, frame, bb_plate, plate_str):
 
-        if not img:
-            return ''
+        plate_str = plate_str[:3] + ' ' + plate_str[3:]
 
-        r = dn.detect(self._net, self._meta, img.encode('utf-8'))
-        _, pred_plate, score_plate = self._convert_to_conners(r)
-        os.remove(img)
+        top_x = int(bb_plate[0])
+        top_y = int(bb_plate[1])
+        btm_x = int(bb_plate[2])
+        btm_y = int(bb_plate[3])
 
-        return pred_plate, score_plate
+        cv2.rectangle(frame, (top_x, top_y), (btm_x, btm_y), (60, 200, 60), 1)
+        cv2.rectangle(frame, (top_x, top_y - 25), (btm_x, top_y), (60, 200, 60), -1)
+        cv2.putText(frame, plate_str, (top_x + 5, top_y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2, cv2.CV_8S)
+
+        cv2.imwrite(file_path, frame)
+
+    def detect(self, car_img, output_path=''):
+        try:
+            img, bb_pred = self.bb_network.get_plate_img(car_img)
+
+            if not img:
+                if output_path:
+                    copyfile(car_img, output_path)
+                return ''
+
+            r = dn.detect(self._net, self._meta, img.encode('utf-8'))
+            _, pred_plate, score_plate = self._convert_to_conners(r)
+
+            os.remove(img)
+
+            if output_path:
+                self.write_output(output_path, cv2.imread(car_img), bb_pred, pred_plate)
+
+            return pred_plate, score_plate
+        except:
+            if output_path:
+                copyfile(car_img, output_path)
+
+        return '', {}
 
     def _char_to_int(self, char):
         if char == 'I':

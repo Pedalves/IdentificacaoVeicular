@@ -17,5 +17,5 @@ class Vehicle(Resource):
         Get a license plate for a given vehicle
         """
 
-        return vehicle.get_lincese_plate(request.data)
+        return vehicle.get_lincese_plate(request.data, **args)
 

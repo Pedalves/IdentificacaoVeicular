@@ -15,6 +15,14 @@ VEHICLE = {
                 'format': 'byte'
 
             }
+        },
+        {
+            'name': 'debug',
+            'description': 'debug',
+            'in': 'query',
+            'type': 'boolean',
+            'default': False,
+            'required': False
         }
     ],
     'responses': {

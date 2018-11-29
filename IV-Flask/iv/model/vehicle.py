@@ -8,12 +8,13 @@ import time
 
 class VehicleModel(Model):
 
-    def __init__(self, vehicle_img):
+    def __init__(self, vehicle_img, output_path=''):
         super().__init__()
 
         self._vehicle_img = vehicle_img
         self.license_plate = ''
         self.score = {}
+        self.output_path = output_path
 
     def save_img(self, name='temp'):
         file_path = os.path.join(os.getcwd(), '.saved/{}.jpg'.format(name))
@@ -33,6 +34,6 @@ class VehicleModel(Model):
     def predict(self):
         start = time.time()
         file_path = self.save_img()
-        self.license_plate, self.score = LICENSE_PLATE_NN.detect(file_path)
+        self.license_plate, self.score = LICENSE_PLATE_NN.detect(file_path, self.output_path)
         os.remove(file_path)
         self.time = time.time() - start
